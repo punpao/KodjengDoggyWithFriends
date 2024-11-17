@@ -72,9 +72,28 @@
 
 
     <!-- Customize Alarm -->
+
+    <div style="display: flex; align-items: center; width: 100%; flex-direction: row; justify-content: start;">
+        <img src="default_clock.svg" alt="default_clock" style="width: 40px;">
+        <div style="font-size: 24px; font-weight: bold; margin-left: 10px; margin-top: 7px;">
+            Customize Alarm
+        </div>
+    </div>
+    <div style="background-color: white; width: 100%; border: 1.5px solid black; border-radius: 12px; min-height: 50px; height: fit-content;display: flex; flex-direction: column; justify-content: center; align-items: center; padding-top: 13px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px;">
+        <div id="edit-btn-cus" style="width: 100%; font-size: 12px; color: #6F4E37; font-weight: 500; cursor: pointer;" onclick="handleEditCus()">
+            Edit
+        </div>
+        <ul id="alarm-list-cus" class="alarm-list">
+            <!-- List of set alarms will appear here -->
+        </ul>
+        <input type="time" id="alarm-time-cus" required>
+        <button style="background-color: white; border: 0px;" onclick="setAlarmCus()">        
+            <img src="add_button.svg" alt="" style="width: 40px;">
+        </button>
+    </div>
     
     <!-- Layout -->
-    <div class="fixed-bottom" style=" position: fixed;
+    <!-- <div class="fixed-bottom" style=" position: fixed;
         bottom: 20px;
         width: 90%;
         background-color: #D9D9D9;
@@ -83,14 +102,14 @@
         height: 75px;">
         <div style="position:relative">
             <div style="position: absolute; left: 50%; bottom: 30px; width: 120px; height: 120px; border-radius: 50%; background-color: #FFAA88; transform: translateX(-50%);cursor: pointer;"></div>
-            <!-- Paw Icon on a Larger White Circle -->
+
             <div style="position: absolute; left: 50%; bottom: 40px; width: 100px; height: 100px; border-radius: 50%; background-color: white; display: flex; justify-content: center; align-items: center; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); transform: translateX(-50%);
             cursor: pointer;">
                 <img src="pet_paw.svg" alt="Paw Icon" style="width: 70%; height: 70%;
                 cursor: pointer;">
             </div>
 
-            <!-- Flex container for larger home icons -->
+           
             <div style="display: flex; justify-content: space-between;padding: 15px; align-items: center;">
                 <div style="display: flex; align-items: center; flex-direction: row; justify-content: space-around; gap: 10px;">
                     <img src="home.svg" alt="Home Icon 3" style="width: 40px;">
@@ -98,14 +117,14 @@
                     <img src="alarm_icon.svg" alt="Home Icon 4" style="width: 40px;">
                 </div>
 
-                <!-- Vertical Line -->
+            
                 <div style="display: flex; align-items: center; flex-direction: row; justify-content: space-around; gap: 10px;">
                     <img src="setting.svg" alt="Home Icon 3" style="width: 40px;">
                     <div style="height: 50px; width: 0.25px; background-color: white;"></div>
                     <img src="camera_icon.svg" alt="Home Icon 4" style="width: 40px;">
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 
 </body>
