@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inria+Serif:wght@400;700&display=swap" rel="stylesheet">
+
+    <script src="script.js"></script>
+
+</head>
+<body>
+    <div class="noti">
+        <div style="display: flex; flex-direction: row; align-items: center; width: 100%; gap: 10px">
+            <img src="warning.svg" style="height: 45px; width: auto; margin:0"/>
+            <div style="position: flex; flex-direction: column;">
+                <div class="food_low">
+                    The Food tank is low
+                </div>
+                <div style="font-size: 12px; font-weight: light;">
+                    Please fill the tank
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div style="position: relative; background-color: gray; height: 200px; border-radius: 12px; width: 100%; padding: 0px; border: 1.5px solid black; box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.496);">
+        <!-- <div style="position: absolute; right: 5%; top: 5%;width: fit-content; background-color: white;" >
+            Hi
+        </div> -->
+        <div class="toggle-container-cam">
+            <div class="toggle-switch-cam" onclick="toggleTheme(this)"></div>
+        </div>
+        
+    </div>
+
+    <!-- Defalut Alarm -->
+    <div style="display: flex; align-items: center; width: 100%; flex-direction: row; justify-content: start;">
+        <img src="default_clock.svg" alt="default_clock" style="width: 40px;">
+        <div style="font-size: 24px; font-weight: bold; margin-left: 10px; margin-top: 7px;">
+            Default Alarm
+        </div>
+    </div>
+    <div style="background-color: white; width: 100%; border: 1.5px solid black; border-radius: 12px; min-height: 50px; height: fit-content;display: flex; flex-direction: column; justify-content: center; align-items: center; padding-top: 13px; padding-bottom: 10px; padding-left: 20px; padding-right: 20px;">
+        <!-- <div style="display: flex; justify-content: space-between; width: 100%;">
+            <div style="display: flex; flex-direction: column;">
+                <div style="font-size: 30px;">
+                    8:00
+                </div>
+                <div style="font-size: 12px; color: #865B51;">
+                    15 gram
+                </div>
+                <div style="font-size: 12px;">
+                    alarm
+                </div>
+            </div>
+             <div class="toggle-switch" onclick="toggleTheme(this)"></div>
+        </div>
+        <div style="width: 100%; background-color: grey; margin-top: 10px; margin-bottom:10px; border: 0.5px solid #E5E5E5; "></div> -->
+        <div id="edit-btn" style="width: 100%; font-size: 12px; color: #6F4E37; font-weight: 500; cursor: pointer;" onclick="handleEdit()">
+            Edit
+        </div>
+        <ul id="alarm-list" class="alarm-list">
+            <!-- List of set alarms will appear here -->
+        </ul>
+        <input type="time" id="alarm-time" required>
+        <button style="background-color: white; border: 0px;" onclick="setAlarm()">        
+            <img src="add_button.svg" alt="" style="width: 40px;">
+        </button>
+    </div>
+
+
+    <!-- Customize Alarm -->
+    
+    <!-- Layout -->
+    <div class="fixed-bottom" style=" position: fixed;
+        bottom: 20px;
+        width: 90%;
+        background-color: #D9D9D9;
+        color: white;
+        border-radius: 15px;
+        height: 75px;">
+        <div style="position:relative">
+            <div style="position: absolute; left: 50%; bottom: 30px; width: 120px; height: 120px; border-radius: 50%; background-color: #FFAA88; transform: translateX(-50%);cursor: pointer;"></div>
+            <!-- Paw Icon on a Larger White Circle -->
+            <div style="position: absolute; left: 50%; bottom: 40px; width: 100px; height: 100px; border-radius: 50%; background-color: white; display: flex; justify-content: center; align-items: center; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); transform: translateX(-50%);
+            cursor: pointer;">
+                <img src="pet_paw.svg" alt="Paw Icon" style="width: 70%; height: 70%;
+                cursor: pointer;">
+            </div>
+
+            <!-- Flex container for larger home icons -->
+            <div style="display: flex; justify-content: space-between;padding: 15px; align-items: center;">
+                <div style="display: flex; align-items: center; flex-direction: row; justify-content: space-around; gap: 10px;">
+                    <img src="home.svg" alt="Home Icon 3" style="width: 40px;">
+                    <div style="height: 50px; width: 0.25px; background-color: white;"></div>
+                    <img src="alarm_icon.svg" alt="Home Icon 4" style="width: 40px;">
+                </div>
+
+                <!-- Vertical Line -->
+                <div style="display: flex; align-items: center; flex-direction: row; justify-content: space-around; gap: 10px;">
+                    <img src="setting.svg" alt="Home Icon 3" style="width: 40px;">
+                    <div style="height: 50px; width: 0.25px; background-color: white;"></div>
+                    <img src="camera_icon.svg" alt="Home Icon 4" style="width: 40px;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

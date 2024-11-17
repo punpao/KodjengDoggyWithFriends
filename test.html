@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bottom Layout Bar</title>
+    <style>
+        /* Reset body margin */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Content area */
+        .content {
+            min-height: 100vh; /* Ensure the content takes up full height */
+            padding-bottom: 60px; /* Space for the bottom bar */
+        }
+
+        /* Bottom layout bar */
+        .bottom-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background-color: #333;
+            color: white;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Style for navigation links or icons */
+        .bottom-bar a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .bottom-bar a:hover {
+            color: #ffcc00;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>Welcome!</h1>
+        <p>This is the main content of the page.</p>
+    </div>
+
+    <div class="bottom-bar">
+        <a href="#home">Home</a>
+        <a href="#search">Search</a>
+        <a href="#profile">Profile</a>
+    </div>
+</body>
+</html>
