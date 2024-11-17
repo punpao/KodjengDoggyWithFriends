@@ -181,3 +181,9 @@ color: #555;
     /* Smooth slide-in animation */
     
 }
+
+.calendar {
+    height: 30px; padding-left: 5px; width: 50%; border-radius: 8px; border: 1px solid rgb(171, 170, 170); color: gray;
+    width: 100%;
+    margin-bottom: 7px
+}

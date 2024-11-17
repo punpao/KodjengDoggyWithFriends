@@ -64,7 +64,11 @@
         <ul id="alarm-list" class="alarm-list">
             <!-- List of set alarms will appear here -->
         </ul>
-        <input type="time" id="alarm-time" required>
+        <div style="display: flex;flex-direction: row; gap: 10px;">
+            <input type="number" placeholder="Insert grams" id="" style="height: 30px; padding-left: 5px; width: 50%; border-radius: 12px; border: 1px solid rgb(171, 170, 170);">
+            <input type="time" id="alarm-time" required>
+        </div>
+        
         <button style="background-color: white; border: 0px;" onclick="setAlarm()">        
             <img src="add_button.svg" alt="" style="width: 40px;">
         </button>
@@ -86,7 +90,15 @@
         <ul id="alarm-list-cus" class="alarm-list">
             <!-- List of set alarms will appear here -->
         </ul>
+        <div style="display: flex; flex-direction: column; align-items: center;">
+        <div style="display: flex;flex-direction: row; gap: 10px; justify-content: center; align-items: ce;">
+        <input type="number" placeholder="Insert grams" id="" style="height: 30px; padding-left: 5px; width: 50%; border-radius: 12px; border: 1px solid rgb(171, 170, 170);">
         <input type="time" id="alarm-time-cus" required>
+        
+
+        </div>
+        <input type="date" class="calendar">
+    </div>
         <button style="background-color: white; border: 0px;" onclick="setAlarmCus()">        
             <img src="add_button.svg" alt="" style="width: 40px;">
         </button>
