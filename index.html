@@ -13,7 +13,7 @@
 <body>
     <div class="noti" id="noti">
         <div style="display: flex; flex-direction: row; align-items: center; width: 100%; gap: 10px">
-            <img src="warning.svg" style="height: 45px; width: auto; margin:0"/>
+            <img src="./img/warning.svg" style="height: 45px; width: auto; margin:0"/>
             <div style="position: flex; flex-direction: column;">
                 <div class="food_low">
                     The Food tank is low
@@ -37,7 +37,7 @@
 
     <!-- Defalut Alarm -->
     <div id="default-alarm" style="display: flex; align-items: center; width: 100%; flex-direction: row; justify-content: start;">
-        <img src="default_clock.svg" alt="default_clock" style="width: 40px;">
+        <img src="./img/default_clock.svg" alt="default_clock" style="width: 40px;">
         <div style="font-size: 24px; font-weight: bold; margin-left: 10px; margin-top: 7px;">
             Default Alarm
         </div>
@@ -65,12 +65,12 @@
             <!-- List of set alarms will appear here -->
         </ul>
         <div style="display: flex;flex-direction: row; gap: 10px;">
-            <input type="number" placeholder="Insert grams" id="" style="height: 30px; padding-left: 5px; width: 50%; border-radius: 12px; border: 1px solid rgb(171, 170, 170);">
+            <input type="number" placeholder="Insert grams" id="gram_def" style="height: 30px; padding-left: 5px; width: 50%; border-radius: 12px; border: 1px solid rgb(171, 170, 170);">
             <input type="time" id="alarm-time" required>
         </div>
         
         <button style="background-color: white; border: 0px;" onclick="setAlarm()">        
-            <img src="add_button.svg" alt="" style="width: 40px;">
+            <img src="./img/add_button.svg" alt="" style="width: 40px;">
         </button>
     </div>
 
@@ -78,7 +78,7 @@
     <!-- Customize Alarm -->
 
     <div id="customize-alarm"style="display: flex; align-items: center; width: 100%; flex-direction: row; justify-content: start;">
-        <img src="default_clock.svg" alt="default_clock" style="width: 40px;">
+        <img src="./img/default_clock.svg" alt="default_clock" style="width: 40px;">
         <div style="font-size: 24px; font-weight: bold; margin-left: 10px; margin-top: 7px;">
             Customize Alarm
         </div>
@@ -100,22 +100,22 @@
         <input type="date" class="calendar">
     </div>
         <button style="background-color: white; border: 0px;" onclick="setAlarmCus()">        
-            <img src="add_button.svg" alt="" style="width: 40px;">
+            <img src="./img/add_button.svg" alt="" style="width: 40px;">
         </button>
     </div>
     <!-- Notification -->
     <div id="Notification"style="display: flex; align-items: center; width: 100%; flex-direction: row; justify-content: start;">
-        <img src="Doorbell.svg" alt="default_clock" style="width: 60px;">
+        <img src="./img/Doorbell.svg" alt="default_clock" style="width: 60px;">
         <div style="font-size: 24px; font-weight: bold; margin-left: 2px;">
             Notification
         </div>
     </div>
-    <div style="display: flex; justify-content: space-around; width: 100vw; height: 550px; padding: 5px auto; background-color: #ffffff;  border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); border: 1px solid black; flex-direction: column;">
+    <div style="display: flex; justify-content: space-around; width: 100vw; height: 550px; padding: 5px auto; background-color: #ffffff;  border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); border: 1px solid black; flex-direction: column; padding: 16px;">
             <div style="height: 100px; margin-top: 10px;" class="card">
                 <div class="icon">
                     <div style="display: flex; justify-content: space-between;">
                         <div style="display: flex; flex-direction: row;">
-                        <img src="dog-icon.svg" alt="Dog Icon">
+                        <img src="./img/dog-icon.svg" alt="Dog Icon">
                         <div style="display: flex; align-items: center; margin-left: 2%; font-size: 18px;">14 NOV 2024</div>
                         </div>
                         <div style="display: flex; align-items: center; margin-left: 30%; font-size: 30px;">12:02</div>
@@ -125,10 +125,10 @@
                 </div>
                 <div style="display: flex;  width: 100%; background-color: #E5E5E6; margin-top: 10px; margin-bottom:10px; border: 0px solid #E5E5E5; height: 0.25px"></div>
             </div>
-            <div  style="height: 100px; margin-top: 10px;" class="card">
+            <!-- <div  style="height: 100px; margin-top: 10px;" class="card">
                 <div class="icon">
                     <div style="display: flex; flex-direction: row;">
-                        <img src="dog-icon.svg" alt="Dog Icon">
+                        <img src="./img/dog-icon.svg" alt="Dog Icon">
                         <div style="display: flex; align-items: center; width: max-content; margin-left: 2%; font-size: 18px;">14 NOV 2024</div>
                         <div style="display: flex; align-items: center; margin-left: 30%; font-size: 30px;">12:02</div>
                     </div>
@@ -139,7 +139,7 @@
             <div  style="height: 100px; margin-top: 10px;" class="card">
                 <div class="icon">
                     <div style="display: flex; flex-direction: row;">
-                        <img src="dog-icon.svg" alt="Dog Icon">
+                        <img src="./img/dog-icon.svg" alt="Dog Icon">
                         <div style="display: flex; align-items: center; width: max-content; margin-left: 2%; font-size: 18px;">14 NOV 2024</div>
                         <div style="display: flex; align-items: center; margin-left: 30%; font-size: 30px;">12:02</div>
                     </div>
@@ -150,7 +150,7 @@
             <div  style="height: 100px; margin-top: 10px;" class="card">
                 <div class="icon">
                     <div style="display: flex; flex-direction: row;">
-                        <img src="dog-icon.svg" alt="Dog Icon">
+                        <img src="./img/dog-icon.svg" alt="Dog Icon">
                         <div style="display: flex; align-items: center; width: max-content; margin-left: 2%; font-size: 18px;">14 NOV 2024</div>
                         <div style="display: flex; align-items: center; margin-left: 30%; font-size: 30px;">12:02</div>
                     </div>
@@ -161,7 +161,7 @@
             <div  style="height: 100px; margin-top: 10px;" class="card">
                 <div class="icon">
                     <div style="display: flex; flex-direction: row;">
-                        <img src="dog-icon.svg" alt="Dog Icon">
+                        <img src="./img/dog-icon.svg" alt="Dog Icon">
                         <div style="display: flex; align-items: center; width: max-content; margin-left: 2%; font-size: 18px;">14 NOV 2024</div>
                         <div style="display: flex; align-items: center; margin-left: 30%; font-size: 30px;">12:02</div>
                     </div>
@@ -170,7 +170,7 @@
                 <div style="display: flex;  width: 100%; background-color: #E5E5E6; margin-top: 10px; margin-bottom:10px; border: 0px solid #E5E5E5; height: 0.25px"></div>
                 <div style="height: 155px;"></div>
             </div>
-           
+            -->
            
 
     </div>
@@ -188,7 +188,7 @@
 
             <div style="position: absolute; left: 50%; bottom: 40px; width: 100px; height: 100px; border-radius: 50%; background-color: white; display: flex; justify-content: center; align-items: center; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); transform: translateX(-50%);
             cursor: pointer;">
-                <img src="pet_paw.svg" alt="Paw Icon" style="width: 70%; height: 70%;cursor: pointer;">
+                <img src="./img/pet_paw.svg" alt="Paw Icon" style="width: 70%; height: 70%;cursor: pointer;">
             </div>
 
            
@@ -196,23 +196,23 @@
                 <div style="display: flex; align-items: center; flex-direction: row; justify-content: space-around; gap: 10px;">
                     
                     <a href="#noti">
-                        <img src="home.svg" alt="Home Icon 3" style="width: 40px;">
+                        <img src="./img/home.svg" alt="Home Icon 3" style="width: 40px;">
                     </a>
                     <div style="height: 50px; width: 0.25px; background-color: white;"></div>
                     <a href="#default-alarm">
-                        <img src="alarm_icon.svg" alt="Home Icon 4" style="width: 40px;">
+                        <img src="./img/alarm_icon.svg" alt="Home Icon 4" style="width: 40px;">
                     </a>
                 </div>
 
             
                 <div style="display: flex; align-items: center; flex-direction: row; justify-content: space-around; gap: 10px;">
                     <a href="#customize-alarm">
-                        <img src="setting.svg" alt="Home Icon 3" style="width: 40px;">
+                        <img src="./img/setting.svg" alt="Home Icon 3" style="width: 40px;">
                     </a>
                     <div style="height: 50px; width: 0.25px; background-color: white;"></div>
                     
                     <a href="#Notification">
-                        <img src="noti.svg" alt="Home Icon 4" style="width: 25px; margin: 6px">
+                        <img src="./img/noti.svg" alt="Home Icon 4" style="width: 25px; margin: 6px">
                     </a>
                 </div>
             </div>
