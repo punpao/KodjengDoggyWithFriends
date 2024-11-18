@@ -11,7 +11,7 @@
 
 </head>
 <body>
-    <div class="noti">
+    <div class="noti" id="noti">
         <div style="display: flex; flex-direction: row; align-items: center; width: 100%; gap: 10px">
             <img src="warning.svg" style="height: 45px; width: auto; margin:0"/>
             <div style="position: flex; flex-direction: column;">
@@ -36,7 +36,7 @@
     </div>
 
     <!-- Defalut Alarm -->
-    <div style="display: flex; align-items: center; width: 100%; flex-direction: row; justify-content: start;">
+    <div id="default-alarm" style="display: flex; align-items: center; width: 100%; flex-direction: row; justify-content: start;">
         <img src="default_clock.svg" alt="default_clock" style="width: 40px;">
         <div style="font-size: 24px; font-weight: bold; margin-left: 10px; margin-top: 7px;">
             Default Alarm
@@ -77,7 +77,7 @@
 
     <!-- Customize Alarm -->
 
-    <div style="display: flex; align-items: center; width: 100%; flex-direction: row; justify-content: start;">
+    <div id="customize-alarm"style="display: flex; align-items: center; width: 100%; flex-direction: row; justify-content: start;">
         <img src="default_clock.svg" alt="default_clock" style="width: 40px;">
         <div style="font-size: 24px; font-weight: bold; margin-left: 10px; margin-top: 7px;">
             Customize Alarm
@@ -104,7 +104,7 @@
         </button>
     </div>
     <!-- Notification -->
-    <div style="display: flex; align-items: center; width: 100%; flex-direction: row; justify-content: start;">
+    <div id="Notification"style="display: flex; align-items: center; width: 100%; flex-direction: row; justify-content: start;">
         <img src="Doorbell.svg" alt="default_clock" style="width: 60px;">
         <div style="font-size: 24px; font-weight: bold; margin-left: 2px;">
             Notification
@@ -188,23 +188,32 @@
 
             <div style="position: absolute; left: 50%; bottom: 40px; width: 100px; height: 100px; border-radius: 50%; background-color: white; display: flex; justify-content: center; align-items: center; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); transform: translateX(-50%);
             cursor: pointer;">
-                <img src="pet_paw.svg" alt="Paw Icon" style="width: 70%; height: 70%;
-                cursor: pointer;">
+                <img src="pet_paw.svg" alt="Paw Icon" style="width: 70%; height: 70%;cursor: pointer;">
             </div>
 
            
             <div style="display: flex; justify-content: space-between;padding: 15px; align-items: center;">
                 <div style="display: flex; align-items: center; flex-direction: row; justify-content: space-around; gap: 10px;">
-                    <img src="home.svg" alt="Home Icon 3" style="width: 40px;">
+                    
+                    <a href="#noti">
+                        <img src="home.svg" alt="Home Icon 3" style="width: 40px;">
+                    </a>
                     <div style="height: 50px; width: 0.25px; background-color: white;"></div>
-                    <img src="alarm_icon.svg" alt="Home Icon 4" style="width: 40px;">
+                    <a href="#default-alarm">
+                        <img src="alarm_icon.svg" alt="Home Icon 4" style="width: 40px;">
+                    </a>
                 </div>
 
             
                 <div style="display: flex; align-items: center; flex-direction: row; justify-content: space-around; gap: 10px;">
-                    <img src="setting.svg" alt="Home Icon 3" style="width: 40px;">
+                    <a href="#customize-alarm">
+                        <img src="setting.svg" alt="Home Icon 3" style="width: 40px;">
+                    </a>
                     <div style="height: 50px; width: 0.25px; background-color: white;"></div>
-                    <img src="camera_icon.svg" alt="Home Icon 4" style="width: 40px;">
+                    
+                    <a href="#Notification">
+                        <img src="noti.svg" alt="Home Icon 4" style="width: 25px; margin: 6px">
+                    </a>
                 </div>
             </div>
         </div>
