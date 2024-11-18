@@ -4,6 +4,7 @@ import {
     getDatabase,
     ref,
     set,
+    push,
     onValue
   } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
 
@@ -25,26 +26,29 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app)
 
-function addData(){
-    const time = document.getElementById('alarm-time')
-    const gram = document.getElementById('gram')
-    console.log(time.value)
-    set(ref(db, 'Alarm'), {
-        Date : null,
+function addData() {
+    const time = document.getElementById('alarm-time');
+    const gram = document.getElementById('gram');
+
+    // Reference to 'Alarm' with push to generate a unique key
+    const dbRef = push(ref(db, 'Alarm'));
+
+    set(dbRef, {
+        Date: null,
         Time: time.value,
         Gram: gram.value,
         isDefault: true
-
     }).then(() => {
-        alert("Data Added");
-    }).catch((error) =>{
+        console.log("Data Added");
+    }).catch((error) => {
         alert("Boommmmm");
-        console.log(error)
-    })
-    document.getElementById('alarm-time').value = '';
-    document.getElementById('gram').value = '';
+        console.log(error);
+    });
 
+    time.value = '';
+    gram.value = '';
 };
+
 
 const addBtn = document.getElementById('addBtn')
 addBtn.addEventListener('click',addData);
