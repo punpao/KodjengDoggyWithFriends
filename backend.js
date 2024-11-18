@@ -5,6 +5,8 @@ import {
     ref,
     set,
     push,
+    get,
+    child,
     onValue
   } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
 
@@ -49,6 +51,19 @@ function addData() {
     gram.value = '';
 };
 
+function getAllData() {
+    const dbRef = ref(getDatabase());
+    get(child(dbRef, `Alarm`)).then((snapshot) => {
+      if (snapshot.exists()) {
+        console.log(snapshot.val());
+      } else {
+        console.log("No data available");
+      }
+    }).catch((error) => {
+      console.error(error);
+    });
+}
+window.onload = getAllData;
 
 const addBtn = document.getElementById('addBtn')
 addBtn.addEventListener('click',addData);
