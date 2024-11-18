@@ -6,9 +6,8 @@
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inria+Serif:wght@400;700&display=swap" rel="stylesheet">
-
     <script src="script.js"></script>
-
+    <script type="module" src="backend.js"></script>
 </head>
 <body>
     <div class="noti" id="noti">
@@ -65,11 +64,11 @@
             <!-- List of set alarms will appear here -->
         </ul>
         <div style="display: flex;flex-direction: row; gap: 10px;">
-            <input type="number" placeholder="Insert grams" id="gram_def" style="height: 30px; padding-left: 5px; width: 50%; border-radius: 12px; border: 1px solid rgb(171, 170, 170);">
+            <input required id="gram"type="number" placeholder="Insert grams" id="gram_def" style="height: 30px; padding-left: 5px; width: 50%; border-radius: 12px; border: 1px solid rgb(171, 170, 170);">
             <input type="time" id="alarm-time" required>
         </div>
         
-        <button style="background-color: white; border: 0px;" onclick="setAlarm()">        
+        <button id="addBtn" style="background-color: white; border: 0px;" onclick="setAlarm()">        
             <img src="./img/add_button.svg" alt="" style="width: 40px;">
         </button>
     </div>

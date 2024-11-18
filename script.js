@@ -21,7 +21,7 @@ function setAlarm() {
     updateAlarmList();
 
     // Clear the input field after adding
-    document.getElementById('alarm-time').value = '';
+    // document.getElementById('alarm-time').value = '';
   } else {
     alert('Please choose a time for the alarm.');
   }
@@ -107,17 +107,11 @@ function checkTime() {
   const currentTimeStr = currentTime.toTimeString().slice(0, 5); // Get current time in HH:MM format
 
   alarms.forEach((alarm) => {
-    if (currentTimeStr === alarm) {
-      triggerAlarm();
-    }
+    
   });
 }
 
-// Function to trigger the alarm
-function triggerAlarm() {
 
-  document.getElementById('status').innerText = 'One of your alarms is ringing!';
-}
 
 // Check the time every second
 setInterval(checkTime, 1000);
@@ -235,17 +229,11 @@ function setAlarmCus() {
     const currentTimeStr = currentTime.toTimeString().slice(0, 5); // Get current time in HH:MM format
   
     alarmsCus.forEach((alarm) => {
-      if (currentTimeStr === alarm) {
-        triggerAlarmCus();
-      }
+      
     });
   }
+ 
   
-  // Function to trigger the alarm
-  function triggerAlarmCus() {
-  
-    document.getElementById('status').innerText = 'One of your alarms is ringing!';
-  }
   
   // Check the time every second
   setInterval(checkTime, 1000);
