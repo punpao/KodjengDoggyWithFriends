@@ -8,6 +8,8 @@ import {
     get,
     remove,
     child,
+    query, 
+    limitToLast ,
     onValue
   } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
 
@@ -40,7 +42,7 @@ function addData() {
     set(dbRef, {
         Time: time.value,
         Gram: gram.value,
-        status: false
+        status: true
     }).then(() => {
         console.log("Data Added");
     }).catch((error) => {
@@ -52,6 +54,7 @@ function addData() {
 
     time.value = '';
     gram.value = '';
+    window.location.reload(true);
 };
 
 function addDataCus(){
@@ -64,7 +67,7 @@ function addDataCus(){
     Date: date.value,
     Time: time_cus.value,
     Gram: gram_cus.value,
-    status: false
+    status: true
   }).then(() => {
       console.log("Data Added");
   }).catch((error) => {
@@ -75,7 +78,29 @@ function addDataCus(){
   time_cus.value = '';
   gram_cus.value = '';
   date.value=''
+  window.location.reload(true)
+}
+function Notification(){
+  const time = ""
+  const gram = ""
+  const now = new Date();
+  const formattedDate = `${now.getDate().toString().padStart(2, '0')} ${now.toLocaleString('en-US', { month: 'short' }).toUpperCase()} ${now.getFullYear()}`;
+  const isEmpty = ""
+  const dbNoti = push(ref(db , "Log")) ;
 
+  set(dbNoti, {
+    Date: formattedDate,
+    Time: now.toLocaleTimeString() ,
+    Gram: 100,
+    isEmpty : false
+  }).then(() => {
+      console.log("Data Added");
+  }).catch((error) => {
+      alert("Boommmmm");
+      console.log(error);
+  });
+
+  window.location.reload(true)
 
 }
 
@@ -118,7 +143,26 @@ export async function getAllDataCus() {
       console.log("BOOOMMMM")
     }
 }
-
+export async function getAllNoti() {
+  const dbRef = ref(getDatabase());
+  var data;
+  const logQuery = query(child(dbRef, 'Log'), limitToLast(5));  // Limit to first 5 entries
+  await get(logQuery).then((snapshot) => {
+    if (snapshot.exists()) {
+      console.log(snapshot.val());
+      data = Object.values(snapshot.val()).reverse();
+    } else {
+      console.log("No data available");
+    }
+  }).catch((error) => {
+    console.error(error);
+  });
+  if (data) {
+    return data;
+  } else {
+    console.log("BOOOMMMM");
+  }
+}
 // export async function getAlarm() {
 //   try {
 //     const itemRef = ref(db, `Alarm/-OC2Rb3bzwM2faZGCHKf`);
@@ -140,11 +184,11 @@ export async function getAllDataCus() {
 // }
 
 export async function editAlarm(uniqueID) {
-    var snapshot = await get(ref(db, `Alarm/${uniqueID}`))
+    var snapshot = await get(ref(db, `Alarm_Default/${uniqueID}`))
     if (snapshot.exists()) {
       const data = snapshot.val()
       const status = data.status;
-      set(ref(db, `Alarm/${uniqueID}`),!status);
+      set(ref(db, `Alarm_Default/${uniqueID}/status`),!status);
       console.log("Change Status ream roy")
 
   }
@@ -152,26 +196,52 @@ export async function editAlarm(uniqueID) {
     console.log("No good la na!")
   }
 }
+export async function editAlarmCus(uniqueID) {
+    var snapshot = await get(ref(db, `Alarm_Customize/${uniqueID}`))
+    if (snapshot.exists()) {
+      const data = snapshot.val()
+      const status = data.status;
+      set(ref(db, `Alarm_Customize/${uniqueID}/status`),!status);
+      console.log("Change Status ream roy")
 
-export async function deleteAlarm() {
+
+  }
+  else{
+    console.log("No good la na!")
+  }
+}
+
+export async function deleteAlarm(id) {
   try {
     // Reference to the specific alarm node by unique ID
-    const alarmRef = ref(db, `Alarm/-OC2Rb3bzwM2faZGCHKf`);
+    const alarmRef = ref(db, `Alarm_Default/${id}`);
     
     await remove(alarmRef);
-    console.log(`Alarm with ID -OC2Rb3bzwM2faZGCHKf deleted successfully.`);
+    window.location.reload(true)
+    console.log(`Alarm with ID ${id} deleted successfully.`);
+  } catch (error) {
+    console.error("Error deleting alarm:", error);
+  }
+}
+export async function deleteAlarmCus(id) {
+  try {
+    // Reference to the specific alarm node by unique ID
+    const alarmRef = ref(db, `Alarm_Customize/${id}`);
+    
+    await remove(alarmRef);
+    window.location.reload(true)
+    console.log(`Alarm with ID ${id} deleted successfully.`);
   } catch (error) {
     console.error("Error deleting alarm:", error);
   }
 }
 
-window.onload = getAllData;
-
 const addBtn = document.getElementById('addBtn')
 addBtn.addEventListener('click',addData);
 const addBtnCus = document.getElementById('addBtnCus')
 addBtnCus.addEventListener('click',addDataCus);
-const editBtn = document.getElementById('pet_paw')
-editBtn.addEventListener('click',deleteAlarm);
+const paw = document.getElementById('pet_paw')
+paw.addEventListener('click' , Notification) ;
+
 
 
