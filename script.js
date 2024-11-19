@@ -1,4 +1,4 @@
-import {getAllData} from './backend.js'
+import {getAllData, getAllDataCus} from './backend.js'
 window.toggleTheme =(toggle) => {
     toggle.classList.toggle('checked'); // Move the switch for the clicked toggle
     // Optionally, you can also toggle a "dark-mode" class or any other class for styling
@@ -9,14 +9,20 @@ window.toggleTheme =(toggle) => {
 
 const getAllAlarms = async () => {
     const data = await getAllData();
-    console.log(data) // Wait for the data to be fetched
+ // Wait for the data to be fetched
+    return data; // Return the fetched data
+};
+
+const getAllAlarmsCus = async () => {
+    const data = await getAllDataCus();
+ // Wait for the data to be fetched
     return data; // Return the fetched data
 };
 
 
-let alarms =  await getAllAlarms()
-console.log(alarms)
-let alarmsCus = [];
+const alarms =  await getAllAlarms()
+
+const alarmsCus = await getAllAlarmsCus();
 
 let isEditing=false;
 let isEditingCus=false;
@@ -25,7 +31,7 @@ let isEditingCus=false;
 window.setAlarm =()=> {
   const alarmInput = document.getElementById('alarm-time').value;
   if (alarmInput) {
-    alarms.push(alarmInput); // Add the alarm time to the list
+    // alarms.push(alarmInput); // Add the alarm time to the list
 
     // Display the alarm list
     updateAlarmList();
@@ -41,19 +47,22 @@ window.setAlarm =()=> {
 window.updateAlarmList = () => {
     const alarmListElement = document.getElementById('alarm-list');
     alarmListElement.innerHTML = ''; // Clear the existing list
-
+    console.log("Hi")
+    console.log(alarms)
     // Loop through alarms and display them
-    alarms.forEach((alarm, index) => {
+    Object.entries(alarms).forEach(([id, alarm]) => {
+        console.log("Hi")
         const listItem = document.createElement('div');
+        console.log(alarm)
         if (!isEditing){
             listItem.innerHTML = `
             <div style="display: flex; justify-content: space-between; width: 100%;">
                 <div style="display: flex; flex-direction: column;">
                     <div style="font-size: 30px;">
-                    ${alarm}
+                    ${alarm.Time}
                     </div>
                     <div style="font-size: 12px; color: #865B51;">
-                        15 gram
+                        ${alarm.Gram} gram
                     </div>
                     <div style="font-size: 12px;">
                         alarm
@@ -69,10 +78,10 @@ window.updateAlarmList = () => {
             <div style="display: flex; justify-content: space-between; width: 100%;">
                 <div style="display: flex; flex-direction: column;">
                     <div style="font-size: 30px;">
-                    ${alarm}
+                    ${alarm.Time}
                     </div>
                     <div style="font-size: 12px; color: #865B51;">
-                        15 gram
+                        ${alarm.Gram} gram
                     </div>
                     <div style="font-size: 12px;">
                         alarm
@@ -93,27 +102,19 @@ window.updateAlarmList = () => {
 
 
 // window.to check the current time against all set alarms
-window.checkTime =()=> {
-  const currentTime = new Date();
-  const currentTimeStr = currentTime.toTimeString().slice(0, 5); // Get current time in HH:MM format
-
-  alarms.forEach((alarm) => {
-    
-  });
-}
 
 
 
 // Check the time every second
-setInterval(checkTime, 1000);
+
 
 // window.handleEdit(){
 //     const toggleButton = document.getElementById("toggle-switch");
 // }
 
 window.editAppear = () =>{
-    const editButton = document.getElementById('edit-btn'); // Locate the Edit button
-    if (alarms.length === 0) {
+    const editButton = document.getElementById('edit-btn-cus'); // Locate the Edit button
+    if (Object.entries(alarms).length === 0) {
         editButton.style.display = 'none'; // Hide Edit button if no alarms
         return;
     } else {
@@ -130,6 +131,8 @@ window.deleteData =(index)=> {
 window.onload = () => {
     editAppear();
     editAppearCus();
+    updateAlarmList();
+    updateAlarmListCus();
 };
 
 window.handleEdit = ()=> {
@@ -152,7 +155,7 @@ window.setAlarmCus =()=> {
       updateAlarmListCus();
   
       // Clear the input field after adding
-      document.getElementById('alarm-time-cus').value = '';
+    //   document.getElementById('alarm-time-cus').value = '';
     } else {
       alert('Please choose a time for the alarm.');
     }
@@ -164,20 +167,21 @@ window.setAlarmCus =()=> {
       alarmListElementCus.innerHTML = ''; // Clear the existing list
   
       // Loop through alarms and display them
-      alarmsCus.forEach((alarm, index) => {
+      Object.entries(alarmsCus).forEach(([id,alarm]) => {
+        console.log(id)
           const listItemCus = document.createElement('div');
           if (!isEditingCus){
               listItemCus.innerHTML = `
               <div style="display: flex; justify-content: space-between; width: 100%;">
                   <div style="display: flex; flex-direction: column;">
                       <div style="font-size: 30px;">
-                      ${alarm}
+                      ${alarm.Time}
                       </div>
                       <div style="font-size: 12px; color: #865B51;">
-                          15 gram
+                          ${alarm.Gram} gram
                       </div>
                       <div style="font-size: 12px;">
-                          alarm
+                          Date: ${alarm.Date}
                       </div>
                   </div>
                   <div class="toggle-switch" id="toggle-switch" onclick="toggleTheme(this)"></div>
@@ -215,24 +219,17 @@ window.setAlarmCus =()=> {
   
   
   // window.to check the current time against all set alarms
-  window.checkTimeCus = ()=> {
-    const currentTime = new Date();
-    const currentTimeStr = currentTime.toTimeString().slice(0, 5); // Get current time in HH:MM format
-  
-    alarmsCus.forEach((alarm) => {
-      
-    });
-  }
+
  
   
   
   // Check the time every second
-  setInterval(checkTime, 1000);
+
   
   
   window.editAppearCus =()=>{
       const editButtonCus = document.getElementById('edit-btn-cus'); // Locate the Edit button
-      if (alarmsCus.length === 0) {
+      if (Object.entries(alarmsCus).length === 0) {
           editButtonCus.style.display = 'none'; // Hide Edit button if no alarms
           return;
       } else {
@@ -252,6 +249,10 @@ window.setAlarmCus =()=> {
       console.log(isEditingCus) // Toggle the edit mode
       updateAlarmListCus(); // Update the list with red boxes if in edit mode
     };
+  
+    const initializeApp = async () => {
+    updateAlarmList();
+    updateAlarmListCus();
+    }
 
-  
-  
+    initializeApp();
