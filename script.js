@@ -1,18 +1,28 @@
-function toggleTheme(toggle) {
+import {getAllData} from './backend.js'
+window.toggleTheme =(toggle) => {
     toggle.classList.toggle('checked'); // Move the switch for the clicked toggle
     // Optionally, you can also toggle a "dark-mode" class or any other class for styling
     document.body.classList.toggle('dark-mode');
 }
 
 
-let alarms = [];
+
+const getAllAlarms = async () => {
+    const data = await getAllData();
+    console.log(data) // Wait for the data to be fetched
+    return data; // Return the fetched data
+};
+
+
+let alarms =  await getAllAlarms()
+console.log(alarms)
 let alarmsCus = [];
 
 let isEditing=false;
 let isEditingCus=false;
 
-// Function to add an alarm
-function setAlarm() {
+// window.to add an alarm
+window.setAlarm =()=> {
   const alarmInput = document.getElementById('alarm-time').value;
   if (alarmInput) {
     alarms.push(alarmInput); // Add the alarm time to the list
@@ -27,8 +37,8 @@ function setAlarm() {
   }
 }
 
-// Function to update the displayed list of alarms
-function updateAlarmList() {
+// window.to update the displayed list of alarms
+window.updateAlarmList = () => {
     const alarmListElement = document.getElementById('alarm-list');
     alarmListElement.innerHTML = ''; // Clear the existing list
 
@@ -78,31 +88,12 @@ function updateAlarmList() {
         }
     });
 
-    // const redBox = document.createElement('div');
-    // if (isEditing) {
-    //     redBox.textContent = 'Delete'
-    //     redBox.classList.add('editable');
-    //     redBox.onclick = function () {
-    //         deleteData(index); // Delete the clicked item
-    //     };
-    // }
-    // else {
-    //     redBox.textContent = ''
-    //     const toggleSwitch = document.createElement('div');
-    //     toggleSwitch.classList.add('toggle-switch');
-    //     toggleSwitch.onclick = function () {
-    //         toggleTheme(this); // Call the toggleTheme function when clicked
-    //     };
-
-    //     // Append the toggle switch to the redBox
-    //     redBox.appendChild(toggleSwitch);
-    // }
     editAppear()
 }
 
 
-// Function to check the current time against all set alarms
-function checkTime() {
+// window.to check the current time against all set alarms
+window.checkTime =()=> {
   const currentTime = new Date();
   const currentTimeStr = currentTime.toTimeString().slice(0, 5); // Get current time in HH:MM format
 
@@ -116,11 +107,11 @@ function checkTime() {
 // Check the time every second
 setInterval(checkTime, 1000);
 
-// function handleEdit(){
+// window.handleEdit(){
 //     const toggleButton = document.getElementById("toggle-switch");
 // }
 
-function editAppear(){
+window.editAppear = () =>{
     const editButton = document.getElementById('edit-btn'); // Locate the Edit button
     if (alarms.length === 0) {
         editButton.style.display = 'none'; // Hide Edit button if no alarms
@@ -130,18 +121,18 @@ function editAppear(){
     }
 }
 
-function deleteData(index) {
+window.deleteData =(index)=> {
     alarms.splice(index, 1); // Remove the data at the given index
     updateAlarmList(); // Refresh the list
 }
 
 
-window.onload = function () {
+window.onload = () => {
     editAppear();
     editAppearCus();
 };
 
-function handleEdit() {
+window.handleEdit = ()=> {
     //console.log("Hi")
     isEditing = !isEditing;
     console.log(isEditing) // Toggle the edit mode
@@ -151,8 +142,8 @@ function handleEdit() {
 
 
 // CustomizeFunction
-// Function to add an alarm
-function setAlarmCus() {
+// window.to add an alarm
+window.setAlarmCus =()=> {
     const alarmInputCus = document.getElementById('alarm-time-cus').value;
     if (alarmInputCus) {
       alarmsCus.push(alarmInputCus); // Add the alarm time to the list
@@ -167,8 +158,8 @@ function setAlarmCus() {
     }
   }
   
-  // Function to update the displayed list of alarms
-  function updateAlarmListCus() {
+  // window.to update the displayed list of alarms
+  window.updateAlarmListCus = () =>{
       const alarmListElementCus = document.getElementById('alarm-list-cus');
       alarmListElementCus.innerHTML = ''; // Clear the existing list
   
@@ -223,8 +214,8 @@ function setAlarmCus() {
   }
   
   
-  // Function to check the current time against all set alarms
-  function checkTimeCus() {
+  // window.to check the current time against all set alarms
+  window.checkTimeCus = ()=> {
     const currentTime = new Date();
     const currentTimeStr = currentTime.toTimeString().slice(0, 5); // Get current time in HH:MM format
   
@@ -239,7 +230,7 @@ function setAlarmCus() {
   setInterval(checkTime, 1000);
   
   
-  function editAppearCus(){
+  window.editAppearCus =()=>{
       const editButtonCus = document.getElementById('edit-btn-cus'); // Locate the Edit button
       if (alarmsCus.length === 0) {
           editButtonCus.style.display = 'none'; // Hide Edit button if no alarms
@@ -249,14 +240,14 @@ function setAlarmCus() {
       }
   }
   
-  function deleteDataCus(index) {
+  window.deleteDataCus = (index)=> {
       alarmsCus.splice(index, 1); // Remove the data at the given index
       updateAlarmListCus(); // Refresh the list
   }
   
   
   
-  function handleEditCus() {
+  window.handleEditCus = () => {
       isEditingCus = !isEditingCus;
       console.log(isEditingCus) // Toggle the edit mode
       updateAlarmListCus(); // Update the list with red boxes if in edit mode
