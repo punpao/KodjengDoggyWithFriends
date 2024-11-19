@@ -6,6 +6,7 @@ import {
     set,
     push,
     get,
+    remove,
     child,
     onValue
   } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
@@ -39,7 +40,8 @@ function addData() {
         Date: null,
         Time: time.value,
         Gram: gram.value,
-        isDefault: true
+        isDefault: true,
+        status:false
     }).then(() => {
         console.log("Data Added");
     }).catch((error) => {
@@ -70,8 +72,58 @@ export async function getAllData() {
       console.log("BOOOMMMM")
     }
 }
+
+// export async function getAlarm() {
+//   try {
+//     const itemRef = ref(db, `Alarm/-OC2Rb3bzwM2faZGCHKf`);
+//     console.log("Hello")
+//     // Fetch the data
+//     const snapshot = await get(itemRef);
+//     if (snapshot.exists()) {
+//       console.log(snapshot.val());
+//       return snapshot.val();
+//     } else {
+//       console.log("No data available for the provided ID.");
+//       return null;
+//     }
+//   } catch (error) {
+//     console.error("Error fetching data:", error);
+//     throw error;
+//   }
+  
+// }
+
+export async function editAlarm(uniqueID) {
+    var snapshot = await get(ref(db, `Alarm/${uniqueID}`))
+    if (snapshot.exists()) {
+      const data = snapshot.val()
+      const status = data.status;
+      set(ref(db, `Alarm/${uniqueID}`),!status);
+      console.log("Change Status ream roy")
+
+  }
+  else{
+    console.log("No good la na!")
+  }
+}
+
+export async function deleteAlarm() {
+  try {
+    // Reference to the specific alarm node by unique ID
+    const alarmRef = ref(db, `Alarm/-OC2Rb3bzwM2faZGCHKf`);
+    
+    await remove(alarmRef);
+    console.log(`Alarm with ID -OC2Rb3bzwM2faZGCHKf deleted successfully.`);
+  } catch (error) {
+    console.error("Error deleting alarm:", error);
+  }
+}
+
 window.onload = getAllData;
 
 const addBtn = document.getElementById('addBtn')
 addBtn.addEventListener('click',addData);
+
+const editBtn = document.getElementById('pet_paw')
+editBtn.addEventListener('click',deleteAlarm);
 
