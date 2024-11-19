@@ -31,15 +31,15 @@ const db = getDatabase(app)
 function addData() {
     const time = document.getElementById('alarm-time');
     const gram = document.getElementById('gram');
+    
 
     // Reference to 'Alarm' with push to generate a unique key
-    const dbRef = push(ref(db, 'Alarm'));
+    const dbRef = push(ref(db, 'Alarm_Default'));
 
     set(dbRef, {
-        Date: null,
         Time: time.value,
         Gram: gram.value,
-        isDefault: true
+        status: false
     }).then(() => {
         console.log("Data Added");
     }).catch((error) => {
@@ -47,14 +47,61 @@ function addData() {
         console.log(error);
     });
 
+    
+
     time.value = '';
     gram.value = '';
 };
 
+function addDataCus(){
+  const time_cus = document.getElementById('alarm-time-cus');
+  const gram_cus = document.getElementById('gram-cus');
+  const date = document.getElementById('date');
+  const dbRef_cus = push(ref(db, 'Alarm_Customize'));
+
+  set(dbRef_cus, {
+    Date: date.value,
+    Time: time_cus.value,
+    Gram: gram_cus.value,
+    status: false
+  }).then(() => {
+      console.log("Data Added");
+  }).catch((error) => {
+      alert("Boommmmm");
+      console.log(error);
+  });
+
+  time_cus.value = '';
+  gram_cus.value = '';
+  date.value=''
+
+
+}
+
 export async function getAllData() {
     const dbRef = ref(getDatabase());
     var data;
-    await get(child(dbRef, `Alarm`)).then((snapshot) => {
+    await get(child(dbRef, `Alarm_Default`)).then((snapshot) => {
+      if (snapshot.exists()) {
+        console.log(snapshot.val());
+        data = snapshot.val();
+      } else {
+        console.log("No data available");
+      }
+    }).catch((error) => {
+      console.error(error);
+    });
+    if(data){
+      return data
+    }else {
+      console.log("BOOOMMMM")
+    }
+}
+
+export async function getAllDataCus() {
+    const dbRef = ref(getDatabase());
+    var data;
+    await get(child(dbRef, `Alarm_Customize`)).then((snapshot) => {
       if (snapshot.exists()) {
         console.log(snapshot.val());
         data = snapshot.val();
@@ -74,4 +121,7 @@ window.onload = getAllData;
 
 const addBtn = document.getElementById('addBtn')
 addBtn.addEventListener('click',addData);
+
+const addBtnCus = document.getElementById('addBtnCus')
+addBtnCus.addEventListener('click',addDataCus);
 
