@@ -1,4 +1,4 @@
-import {getAllData, getAllDataCus , editAlarm , deleteAlarm , editAlarmCus , deleteAlarmCus , getAllNoti}  from './backend.js'
+import {getAllData, getAllDataCus , editAlarm , deleteAlarm , editAlarmCus , deleteAlarmCus , getAllNoti , checkFoodTank}  from './backend.js'
 window.editAlarm = editAlarm;
 window.deleteAlarm = deleteAlarm;
 window.editAlarmCus = editAlarmCus ;
@@ -28,6 +28,10 @@ const getAllNotii = async () => {
  // Wait for the data to be fetched
     return data; // Return the fetched data
 };
+const isFoodEmpty = async () => {
+    const fill = await checkFoodTank()
+    return fill
+}
 
 
 const alarms =  await getAllAlarms()
@@ -153,7 +157,9 @@ window.onload = () => {
     editAppearCus();
     updateAlarmList();
     updateAlarmListCus();
-    getNotis()
+    getNotis() ;
+    FoodTank() ;
+
 };
 
 window.handleEdit = ()=> {
@@ -307,6 +313,41 @@ window.setAlarmCus =()=> {
       });
   
   }}
+
+  window.FoodTank = async() => {
+    const warn = document.getElementById('warning')
+    warn.innerHTML = ``
+    const fill = await isFoodEmpty() 
+    console.log(fill[0].isEmpty)
+    const tank = document.createElement('div')
+    if (fill[0].isEmpty) {
+            tank.innerHTML = `
+                            <div style="display: flex; flex-direction: row; align-items: center; width: 100%; gap: 10px">
+                                <img src="./img/warning.svg" style="height: 45px; width: auto; margin:0"/>
+                                <div style="position: flex; flex-direction: column;">
+                                    <div class="food_low">
+                                        The Food tank is low
+                                    </div>
+                                    <div style="font-size: 12px; font-weight: light;">
+                                        Please fill the tank
+                                    </div>
+
+                                </div>
+                            </div>
+                        `
+    } else {
+        tank.innerHTML = `<div style="display: flex; flex-direction: row; align-items: center; width: 100%; gap: 10px">
+        <img src="img/fulltank_round.svg" style="height: 45px; width: auto; margin:0"/>
+        <div style="position: flex; flex-direction: column;">
+            <div class="food_low" style='color:#A6A579'>
+                Doggie is Full
+            </div>
+        </div>
+    </div>`
+    }
+    warn.appendChild(tank)
+    
+  }
   
   
   // window.to check the current time against all set alarms
@@ -345,7 +386,8 @@ window.setAlarmCus =()=> {
     const initializeApp = async () => {
     updateAlarmList();
     updateAlarmListCus();
-    getNotis();
+    getNotis()
+    FoodTank() ;
     }
 
     initializeApp();
