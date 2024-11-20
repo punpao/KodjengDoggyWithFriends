@@ -109,7 +109,7 @@ export async function getAllData() {
     var data;
     await get(child(dbRef, `Alarm_Default`)).then((snapshot) => {
       if (snapshot.exists()) {
-        console.log(snapshot.val());
+        // console.log(snapshot.val());
         data = snapshot.val();
       } else {
         console.log("No data available");
@@ -129,7 +129,7 @@ export async function getAllDataCus() {
     var data;
     await get(child(dbRef, `Alarm_Customize`)).then((snapshot) => {
       if (snapshot.exists()) {
-        console.log(snapshot.val());
+        // console.log(snapshot.val());
         data = snapshot.val();
       } else {
         console.log("No data available");
@@ -149,7 +149,7 @@ export async function getAllNoti() {
   const logQuery = query(child(dbRef, 'Log'), limitToLast(5));  // Limit to first 5 entries
   await get(logQuery).then((snapshot) => {
     if (snapshot.exists()) {
-      console.log(snapshot.val());
+      // console.log(snapshot.val());
       data = Object.values(snapshot.val()).reverse();
     } else {
       console.log("No data available");
@@ -163,6 +163,7 @@ export async function getAllNoti() {
     console.log("BOOOMMMM");
   }
 }
+
 // export async function getAlarm() {
 //   try {
 //     const itemRef = ref(db, `Alarm/-OC2Rb3bzwM2faZGCHKf`);
@@ -181,7 +182,28 @@ export async function getAllNoti() {
 //     throw error;
 //   }
   
-// }
+export async function checkFoodTank() {
+  const dbRef = ref(getDatabase());
+  var data;
+  const logQuery = query(child(dbRef, 'Log'), limitToLast(1));  // Limit to first 5 entries
+  await get(logQuery).then((snapshot) => {
+    if (snapshot.exists()) {
+      // console.log(snapshot.val());
+      data = Object.values(snapshot.val()).reverse();
+      console.log(data)
+    } else {
+      console.log("No data available");
+    }
+  }).catch((error) => {
+    console.error(error);
+  });
+  if (data) {
+    return data;
+  } else {
+    console.log("BOOOMMMM");
+  }
+  
+}
 
 export async function editAlarm(uniqueID) {
     var snapshot = await get(ref(db, `Alarm_Default/${uniqueID}`))
@@ -196,6 +218,8 @@ export async function editAlarm(uniqueID) {
     console.log("No good la na!")
   }
 }
+
+
 export async function editAlarmCus(uniqueID) {
     var snapshot = await get(ref(db, `Alarm_Customize/${uniqueID}`))
     if (snapshot.exists()) {
@@ -223,6 +247,8 @@ export async function deleteAlarm(id) {
     console.error("Error deleting alarm:", error);
   }
 }
+
+
 export async function deleteAlarmCus(id) {
   try {
     // Reference to the specific alarm node by unique ID
@@ -236,12 +262,13 @@ export async function deleteAlarmCus(id) {
   }
 }
 
+
 const addBtn = document.getElementById('addBtn')
 addBtn.addEventListener('click',addData);
 const addBtnCus = document.getElementById('addBtnCus')
 addBtnCus.addEventListener('click',addDataCus);
 const paw = document.getElementById('pet_paw')
-paw.addEventListener('click' , Notification) ;
+paw.addEventListener('click' , checkFoodTank) ;
 
 
 

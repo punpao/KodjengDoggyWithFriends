@@ -59,15 +59,15 @@ window.setAlarm =()=> {
 window.updateAlarmList = () => {
     const alarmListElement = document.getElementById('alarm-list');
     alarmListElement.innerHTML = ''; // Clear the existing list
-    console.log("Hi")
-    console.log(alarms)
+   
+    // console.log(alarms)
     // Loop through alarms and display them
     if (alarms) {
     Object.entries(alarms).forEach(([id, alarm]) => {
-        console.log("Hi")
+        
         const listItem = document.createElement('div');
         const checked_class = alarm.status ? "checked" : ""
-        console.log(alarm.status)
+        // console.log(alarm.status)
         if (!isEditing){
             listItem.innerHTML = `
             <div style="display: flex; justify-content: space-between; width: 100%;">
@@ -184,7 +184,7 @@ window.setAlarmCus =()=> {
       // Loop through alarms and display them
       if ( alarmsCus){
       Object.entries(alarmsCus).forEach(([id,alarm]) => {
-        console.log(id)
+        // console.log(id)
           const listItemCus = document.createElement('div');
           const checked_class = alarm.status ? "checked" : ""
           if (!isEditingCus){
@@ -237,15 +237,15 @@ window.setAlarmCus =()=> {
 
   window.getNotis = () =>{
       const notisList = document.getElementById('notis');
-      console.log("kuay")
-      console.log(notis)
+    //   console.log("kuay")
+    //   console.log(notis)
       notisList.innerHTML = ''; // Clear the existing list
   
       // Loop through alarms and display them
       if ( notis ){
       Object.entries(notis).forEach(([id,noti]) => {
           const listItemNoti = document.createElement('div');
-          console.log(noti)
+        //   console.log(noti)
               listItemNoti.innerHTML = `
               <div style="height: 100px; margin-top: 10px;" class="card">
                 <div class="icon">
