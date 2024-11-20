@@ -42,7 +42,8 @@ let isEditingCus=false;
 // window.to add an alarm
 window.setAlarm =()=> {
   const alarmInput = document.getElementById('alarm-time').value;
-  if (alarmInput) {
+  const gramInput = document.getElementById('gram').value;
+  if (alarmInput && gramInput && gramInput>0) {
     // alarms.push(alarmInput); // Add the alarm time to the list
 
     // Display the alarm list
@@ -51,7 +52,7 @@ window.setAlarm =()=> {
     // Clear the input field after adding
     // document.getElementById('alarm-time').value = '';
   } else {
-    alert('Please choose a time for the alarm.');
+    alert('Please complete all the field and food amount must greater than 0');
   }
 }
 
@@ -111,8 +112,11 @@ window.updateAlarmList = () => {
         }
     });
 
-    editAppear()
-}}
+}
+//console.log('hi1')
+editAppear()
+
+}
 
 
 // window.to check the current time against all set alarms
@@ -127,8 +131,10 @@ window.updateAlarmList = () => {
 // }
 
 window.editAppear = () =>{
-    const editButton = document.getElementById('edit-btn-cus'); // Locate the Edit button
-    if (Object.entries(alarms).length === 0) {
+    const editButton = document.getElementById('edit-btn');// Locate the Edit button
+    // Locate the Edit button
+    if (typeof alarms === "undefined") {
+        //console.log("hide")
         editButton.style.display = 'none'; // Hide Edit button if no alarms
         return;
     } else {
@@ -156,6 +162,24 @@ window.handleEdit = ()=> {
     console.log(isEditing) // Toggle the edit mode
     updateAlarmList(); // Update the list with red boxes if in edit mode
   };
+  
+// export function isFutureDate(inputDateString) {
+//     if (!inputDateString) {
+//         console.error('Invalid date string');
+//         return false;
+//     }
+
+//     const inputDate = new Date(inputDateString); // Convert the string to a Date object
+//     const now = new Date(); // Get the current date
+    
+//     // Set time of both dates to midnight for date-only comparison
+//     inputDate.setHours(0, 0, 0, 0);
+//     now.setHours(0, 0, 0, 0);
+
+//     // Return true if the input date is today or in the future
+//     return inputDate >= now;
+// }
+
 
 
 
@@ -163,7 +187,20 @@ window.handleEdit = ()=> {
 // window.to add an alarm
 window.setAlarmCus =()=> {
     const alarmInputCus = document.getElementById('alarm-time-cus').value;
-    if (alarmInputCus) {
+    const gramInput = document.getElementById('gram-cus').value
+    const dateInput = document.getElementById('date').value; // Get the date input value
+
+    const now = new Date(); // Get the current date
+    
+    // Convert the date input string to a Date object
+    const date = new Date(dateInput);
+
+    // Set time of both dates to midnight for date-only comparison
+    date.setHours(0,0,0,0)
+    now.setHours(0, 0, 0, 0);
+
+    // Return true if the input date is today or in the future
+    if (alarmInputCus && gramInput  && gramInput>0 && date && date>=now) {
       //alarmsCus.push(alarmInputCus); // Add the alarm time to the list
   
       // Display the alarm list
@@ -172,7 +209,8 @@ window.setAlarmCus =()=> {
       // Clear the input field after adding
     //   document.getElementById('alarm-time-cus').value = '';
     } else {
-      alert('Please choose a time for the alarm.');
+        console.log(Date.now())
+      alert('Please complete all the field, food amount must greater than 0 and you cannot choose past date');
     }
   }
   
@@ -231,8 +269,10 @@ window.setAlarmCus =()=> {
       });
   
       
-      editAppearCus()
-  }}
+      
+  }
+  editAppearCus()
+}
   
 
   window.getNotis = () =>{
@@ -279,8 +319,8 @@ window.setAlarmCus =()=> {
   
   
   window.editAppearCus =()=>{
-      const editButtonCus = document.getElementById('edit-btn-cus'); // Locate the Edit button
-      if (Object.entries(alarmsCus).length === 0) {
+      const editButtonCus = document.getElementById('edit-btn-cus');
+      if (typeof alarmsCus === "undefined") {
           editButtonCus.style.display = 'none'; // Hide Edit button if no alarms
           return;
       } else {
@@ -305,7 +345,7 @@ window.setAlarmCus =()=> {
     const initializeApp = async () => {
     updateAlarmList();
     updateAlarmListCus();
-    getNotis()
+    getNotis();
     }
 
     initializeApp();

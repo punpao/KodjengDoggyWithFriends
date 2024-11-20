@@ -13,6 +13,8 @@ import {
     onValue
   } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
 
+
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -37,12 +39,46 @@ function addData() {
     
 
     // Reference to 'Alarm' with push to generate a unique key
-    const dbRef = push(ref(db, 'Alarm_Default'));
+    if (time && gram && gram.value>0){
+      const dbRef = push(ref(db, 'Alarm_Default'));
 
-    set(dbRef, {
-        Time: time.value,
-        Gram: gram.value,
-        status: true
+      set(dbRef, {
+          Time: time.value,
+          Gram: gram.value,
+          status: true
+      }).then(() => {
+          console.log("Data Added");
+      }).catch((error) => {
+          alert("Boommmmm");
+          console.log(error);
+      });
+
+      
+
+      time.value = '';
+      gram.value = '';
+      window.location.reload(true);
+    }
+};
+
+function addDataCus(){
+  const time_cus = document.getElementById('alarm-time-cus');
+  const gram_cus = document.getElementById('gram-cus');
+  const date = document.getElementById('date');
+  const now = new Date(); // Get the current date
+  const inputDate = new Date(date.value)
+    
+    // Set time of both dates to midnight for date-only comparison
+  inputDate.setHours(0,0,0,0)
+  now.setHours(0,0,0,0)
+  if (time_cus && gram_cus && gram_cus.value>0 && date && inputDate>=now ){
+    const dbRef_cus = push(ref(db, 'Alarm_Customize'));
+
+    set(dbRef_cus, {
+      Date: date.value,
+      Time: time_cus.value,
+      Gram: gram_cus.value,
+      status: true
     }).then(() => {
         console.log("Data Added");
     }).catch((error) => {
@@ -50,35 +86,11 @@ function addData() {
         console.log(error);
     });
 
-    
-
-    time.value = '';
-    gram.value = '';
-    window.location.reload(true);
-};
-
-function addDataCus(){
-  const time_cus = document.getElementById('alarm-time-cus');
-  const gram_cus = document.getElementById('gram-cus');
-  const date = document.getElementById('date');
-  const dbRef_cus = push(ref(db, 'Alarm_Customize'));
-
-  set(dbRef_cus, {
-    Date: date.value,
-    Time: time_cus.value,
-    Gram: gram_cus.value,
-    status: true
-  }).then(() => {
-      console.log("Data Added");
-  }).catch((error) => {
-      alert("Boommmmm");
-      console.log(error);
-  });
-
-  time_cus.value = '';
-  gram_cus.value = '';
-  date.value=''
-  window.location.reload(true)
+    time_cus.value = '';
+    gram_cus.value = '';
+    date.value=''
+    window.location.reload(true)
+  }
 }
 function Notification(){
   const time = ""
