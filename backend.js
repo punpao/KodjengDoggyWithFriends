@@ -196,6 +196,7 @@ export async function editAlarm(uniqueID) {
     console.log("No good la na!")
   }
 }
+
 export async function editAlarmCus(uniqueID) {
     var snapshot = await get(ref(db, `Alarm_Customize/${uniqueID}`))
     if (snapshot.exists()) {
