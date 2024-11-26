@@ -47,7 +47,7 @@ let isEditingCus=false;
 window.setAlarm =()=> {
   const alarmInput = document.getElementById('alarm-time').value;
   const gramInput = document.getElementById('gram').value;
-  if (alarmInput && gramInput && gramInput>0) {
+  if (alarmInput!='' && gramInput!='' && gramInput>0) {
     // alarms.push(alarmInput); // Add the alarm time to the list
 
     // Display the alarm list
@@ -206,7 +206,7 @@ window.setAlarmCus =()=> {
     now.setHours(0, 0, 0, 0);
 
     // Return true if the input date is today or in the future
-    if (alarmInputCus && gramInput  && gramInput>0 && date && date>=now) {
+    if (alarmInputCus!='' && gramInput!=''  && gramInput>0 && date!='' && date>=now) {
       //alarmsCus.push(alarmInputCus); // Add the alarm time to the list
   
       // Display the alarm list

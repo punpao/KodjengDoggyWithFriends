@@ -39,7 +39,8 @@ function addData() {
   const gram = document.getElementById("gram");
 
     // Reference to 'Alarm' with push to generate a unique key
-    if (time && gram && gram.value>0){
+    if (time.value!='' && gram.value!='' && gram.value>0){
+      console.log(time)
       const dbRef = push(ref(db, 'Alarm_Default'));
 
       set(dbRef, {
@@ -71,7 +72,7 @@ function addDataCus(){
     // Set time of both dates to midnight for date-only comparison
   inputDate.setHours(0,0,0,0)
   now.setHours(0,0,0,0)
-  if (time_cus && gram_cus && gram_cus.value>0 && date && inputDate>=now ){
+  if (time_cus.value!='' && gram_cus.value!='' && gram_cus.value>0 && date.value!='' && inputDate>=now ){
     const dbRef_cus = push(ref(db, 'Alarm_Customize'));
 
     set(dbRef_cus, {
