@@ -63,6 +63,9 @@ window.setAlarm =()=> {
 // window.to update the displayed list of alarms
 window.updateAlarmList = () => {
     const alarmListElement = document.getElementById('alarm-list');
+    const editBtn = document.getElementById('edit-btn');
+
+
     alarmListElement.innerHTML = ''; // Clear the existing list
    
     // console.log(alarms)
@@ -74,6 +77,8 @@ window.updateAlarmList = () => {
         const checked_class = alarm.status ? "checked" : ""
         // console.log(alarm.status)
         if (!isEditing){
+            editBtn.innerHTML = "Edit"
+            editBtn.style.color = "#6F4E37"
             listItem.innerHTML = `
             <div style="display: flex; justify-content: space-between; width: 100%;">
                 <div style="display: flex; flex-direction: column;">
@@ -93,6 +98,8 @@ window.updateAlarmList = () => {
         `;
         alarmListElement.appendChild(listItem);
         }else{
+            editBtn.innerHTML = "Cancel Edit"
+            editBtn.style.color = "#FF0000"
             listItem.innerHTML = `
             <div style="display: flex; justify-content: space-between; width: 100%;">
                 <div style="display: flex; flex-direction: column;">
@@ -223,6 +230,7 @@ window.setAlarmCus =()=> {
   // window.to update the displayed list of alarms
   window.updateAlarmListCus = () =>{
       const alarmListElementCus = document.getElementById('alarm-list-cus');
+      const editBtnCus = document.getElementById('edit-btn-cus')
       alarmListElementCus.innerHTML = ''; // Clear the existing list
   
       // Loop through alarms and display them
@@ -232,6 +240,8 @@ window.setAlarmCus =()=> {
           const listItemCus = document.createElement('div');
           const checked_class = alarm.status ? "checked" : ""
           if (!isEditingCus){
+            editBtnCus.innerHTML = "Edit"
+            editBtnCus.style.color = "#6F4E37"
               listItemCus.innerHTML = `
               <div style="display: flex; justify-content: space-between; width: 100%;">
                   <div style="display: flex; flex-direction: column;">
@@ -251,6 +261,8 @@ window.setAlarmCus =()=> {
           `;
           alarmListElementCus.appendChild(listItemCus);
           }else{
+            editBtnCus.innerHTML = "Cancel Edit"
+            editBtnCus.style.color = "#FF0000"
               listItemCus.innerHTML = `
               <div style="display: flex; justify-content: space-between; width: 100%;">
                   <div style="display: flex; flex-direction: column;">
@@ -289,26 +301,47 @@ window.setAlarmCus =()=> {
   
       // Loop through alarms and display them
       if ( notis ){
-      Object.entries(notis).forEach(([id,noti]) => {
+      Object.entries(notis).forEach(([id,noti],index) => {
           const listItemNoti = document.createElement('div');
-        //   console.log(noti)
-              listItemNoti.innerHTML = `
+          let past_gram = 0;
+          //console.log(noti);
+          if(!noti.isEat){
+            listItemNoti.innerHTML = `
               <div style="height: 100px; margin-top: 10px;" class="card">
                 <div class="icon">
                     <div style="display: flex; justify-content: space-between;">
-                        <div style="display: flex; flex-direction: row; ">
-                        <img src="./img/dog-icon.svg" alt="Dog Icon">
-                        <div style='width:10px' '></div>
-                        <div style="display: flex; align-items: center; width='10%' padding-left: 3%; font-size: 18px;">${noti.Date}</div>
+                        <div style="display: flex; flex-direction: row; width:100%; gap:2px">
+                        <img src="./img/maki_cross.svg" alt="maki">
+                        <div style="display: flex; align-items: center;padding-left: 3%; font-size: 18px;">${noti.Date}</div>
                         </div>
                         <div style="display: flex; align-items: center; margin-left: 30%; font-size: 22px;">${noti.Time}</div>
                     </div>
                     
-                    <div style="margin-top: 25px; color: #488E5D;"class="action">Dispensed ${noti.Gram} grams</div>
+                    <div style="margin-top: 25px; color: #488E5D;"class="action">Dog bowl has ${noti.Gram} grams left</div>
                 </div>
                 <div style="display: flex;  width: 100%; background-color: #E5E5E6; margin-top: 10px; margin-bottom:10px; border: 0px solid #E5E5E5; height: 0.25px"></div>
             </div>
           `
+
+          }else if(noti.isEat){
+            listItemNoti.innerHTML = `
+              <div style="height: 100px; margin-top: 10px;" class="card">
+                <div class="icon">
+                    <div style="display: flex; justify-content: space-between;">
+                        <div style="display: flex; flex-direction: row; width:100%; gap:2px">
+                        <img src="./img/dog-icon.svg" alt="Dog Icon">
+                        <div style="display: flex; align-items: center;padding-left: 3%; font-size: 18px;">${noti.Date}</div>
+                        </div>
+                        <div style="display: flex; align-items: center; margin-left: 30%; font-size: 22px;">${noti.Time}</div>
+                    </div>
+                    
+                    <div style="margin-top: 25px; color: #488E5D;"class="action">Dog bowl has ${noti.Gram} grams left</div>
+                </div>
+                <div style="display: flex;  width: 100%; background-color: #E5E5E6; margin-top: 10px; margin-bottom:10px; border: 0px solid #E5E5E5; height: 0.25px"></div>
+            </div>
+          `
+          }
+          past_gram = noti.Gram;
           notisList.appendChild(listItemNoti);
       });
   
@@ -340,7 +373,7 @@ window.setAlarmCus =()=> {
         <img src="img/fulltank_round.svg" style="height: 45px; width: auto; margin:0"/>
         <div style="position: flex; flex-direction: column;">
             <div class="food_low" style='color:#A6A579'>
-                Doggie is Full
+               All stocked up!
             </div>
         </div>
     </div>`
