@@ -108,6 +108,7 @@ function Notification() {
     Time: now.toLocaleTimeString(),
     Gram: 100,
     isEmpty: false,
+    isEat: false
   })
     .then(() => {
       console.log("Data Added");
@@ -283,5 +284,5 @@ const addBtn = document.getElementById("addBtn");
 addBtn.addEventListener("click", addData);
 const addBtnCus = document.getElementById("addBtnCus");
 addBtnCus.addEventListener("click", addDataCus);
-const paw = document.getElementById("pet_paw");
-paw.addEventListener("click", checkFoodTank);
+// const paw = document.getElementById("pet_paw");
+// paw.addEventListener("click", Notification);
